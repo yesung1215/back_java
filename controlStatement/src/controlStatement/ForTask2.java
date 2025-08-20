@@ -45,14 +45,36 @@ public class ForTask2 {
 //		System.out.println(addSum);
 		
 //		1~30까지 짝수중 7번째 숫자를 출력하기
-		for(int i = 1; i < 31; i += 1) {
-			if(i % 2 == 0 && i == 14) {
-				System.out.println(i);
+		int count = 0;
+		for(int i = 0; i < 30; i++) {
+			int value = i + 1;
+			if(value % 2 == 0) {
+				count++;
+				if(count == 7) {
+					System.out.println(value);
+					break;
+				}
 			}
 		}
 		
-//		1~30까지 짝수중 첫번째 짝수와 마지막 짝수만 더해서 출력하기
-		
+//      1~30까지 짝수중 첫번째 짝수와 마지막 짝수만 더해서 출력하기
+		int min = 0;
+		int max = 0;
+		for(int i = 0; i < 30; i++) {
+			int value = i + 1;
+			if(value % 2 == 0) {
+				if(min == 0) {
+					min = value;
+				}
+				if(value < min) { // 0 나오지않게 최소값
+					min = value;
+				}
+				if(value > max) {
+					max = value;
+				}
+			}
+		}
+		System.out.println(min + max);		
 			
 	}
 	

@@ -2,13 +2,14 @@ package controlStatement;
 
 import java.util.Scanner;
 
-public class SwitchTest {
+public class WhileTest {
    public static void main(String[] args) {
       Scanner sc = new Scanner(System.in);
       String message = "MBTI를 입력하세요.\nex)ENFP", mbti = null;
       
       System.out.println(message);
       mbti = sc.next();
+      
       
       switch(mbti) {
       case "ENFP":
@@ -26,6 +27,5 @@ public class SwitchTest {
       default:
          break;
       }
-      
    }
 }
