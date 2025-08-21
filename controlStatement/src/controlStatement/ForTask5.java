@@ -2,7 +2,7 @@ package controlStatement;
 
 import java.util.Scanner;
 
-public class Fortask5 {
+public class ForTask5 {
 	public static void main(String[] args) {
 //      1. ACEG...Z 출력!
 //		for(char i = 65; i < 91; i += 2) {
