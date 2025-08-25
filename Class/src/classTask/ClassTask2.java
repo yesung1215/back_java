@@ -20,8 +20,19 @@ class Market {
 	
 	public void sellProduct(Customer customer) {
 		// ClassTask01_check 참고, 줌 수업 다시 듣기
+//		System.out.println(customer.name);
+		if(inventory > 0) {
+			if(price * customer.discount / 100 < customer.money) {
+				int restMoney = customer.money -= (price - price * customer.discount / 100);
+				inventory--;
+				System.out.printf("남은 재고: %d개, 남은 금액 %d원", inventory, restMoney);
+			}else {
+				System.out.println("잔액 부족");
+			}
+		}else {
+			System.out.println("재고 부족");
+		}
 	}
-	
 }
 
 // 알고리즘
@@ -57,8 +68,13 @@ public class ClassTask2 {
 //		마켓의 상품 재고와, 소비자의 남은 금액을 출력
 		Market emart = new Market("컴퓨터", 50000, 5); 
 		Customer ys = new Customer("예성", "01077131372", 300000, 40);
-//		System.out.println(ys.discount);
+//		System.out.println(ys.name);
 		
+
+		emart.sellProduct(ys);
+		System.out.println("\n");
+//		emart.sellProduct(th);
+		System.out.println("\n");
 	}
 	
 }
