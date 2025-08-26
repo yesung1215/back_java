@@ -39,11 +39,6 @@ public class CastingTest2 {
       System.out.println(optionFerrari instanceof Car);
       System.out.println(optionFerrari instanceof SuperCar);
       
-      
-      
-      
-      
-      
    }
 }
 
