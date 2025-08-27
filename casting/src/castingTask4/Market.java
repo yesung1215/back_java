@@ -1,72 +1,118 @@
 package castingTask4;
 
-//Market
-//- 필드: 이름
-//- 메서드:
-// 1. 상품 판매
-//    - 등록된 상품만 판매할 수 있다.
-//    - 유저가 가진 돈보다 적으면 판매할 수 없다.
-//    - 유저가 마다의 할인율이 적용된다.
-//       1. 비회원 할인율 5% 적용
-//       2. 멤버 할인율 30% 적용
-//    - 등록된 상품의 재고보다 작으면 판매할 수 없다.
-
-// 2. 상품 등록
-//    - 상품 등록은 최대 5개까지만 할 수 있다. // 크기가 아는 배열 생성
-//    (즉, 6개를 전달해도 앞에 5개 상품만 등록된다)
-//    - 마트에 같은 이름의 상품은 등록할 수 없다. -> 같으면 continue
-//
-// 3. 포인트 적립 메서드
-//    - 비회원은 5%
-//    - 회원은 10%
-
-// 4. 만약 비회원이라면 
-// 쿠폰 1장 제공, 쿠폰이 10장이라면 상품 무료!
-
 public class Market {
-	private String name;
+   private String name;
+   
+   public Market() {;}
 
-	public Market() {;}
-	
-	public Market(String name) {
-		this.name = name;
-	}
-
-	String getName() {
-		return name;
-	}
-
-	void setName(String name) {
-		this.name = name;
-	}
-	
-	public void sellProduct(Product product, Cunsumor cunsumor) { // 상품 판매
-		if(product.getName().equals(product.getName())) {
-			if(product.getPrice() <= cunsumor.getMoney()) {
-				if(cunsumor instanceof MarketMember) {
-					int memberDiscount = product.getPrice() * 30 / 100;
-					cunsumor.setMoney(cunsumor.getMoney() - product.getPrice() - memberDiscount);
-					product.setProductStock(product.getProductStock() - 1);
-				}else if(cunsumor instanceof MarketNonMember) {
-					int nonMemberDiscount = product.getPrice() * 5 / 100;
-					cunsumor.setMoney(cunsumor.getMoney() - product.getPrice() - nonMemberDiscount);
-					product.setProductStock(product.getProductStock() - 1);
-				}
-			}
-		}
-	}
-	
-	public void productRegister(Product product) {
-		// 5개 -> 크기가 5인 배열 생성?
-		String[] productArray = new String[5]; // 마켓의 필드애 적어야..
-		for(int i = 0; i < productArray.length; i++) {
-			productArray[i] = product.getName();
-			System.out.printf(productArray[i]);
-		}
-	}
-	
-	
-
+   public Market(String name) {
+      super();
+      this.name = name;
+   }
+   
+   String getName() {
+	return name;
 }
 
+void setName(String name) {
+	this.name = name;
+}
 
+Product[] getProducts() {
+	return products;
+}
+
+void setProducts(Product[] products) {
+	this.products = products;
+}
+
+int getProductCount() {
+	return productCount;
+}
+
+void setProductCount(int productCount) {
+	this.productCount = productCount;
+}
+
+public void getSell(Product product, Cunsumor cunsumor) {
+      if(cunsumor.getMoney() >= product.getPrice() && product.getProductStock() > 0) {
+         if(cunsumor instanceof MarketMember) {
+            int discount = (int)(product.getPrice() * 0.7);
+            cunsumor.setMoney(cunsumor.getMoney() - discount);
+            System.out.println("지불할 가격은 " + discount + "원 이며, 현재 남은 잔액은 " + cunsumor.getMoney() +"원 입니다.");
+            product.setProductStock(product.getProductStock() - 1);
+            System.out.println("남은 재고 : " + (product.getProductStock()));
+         } else if(cunsumor instanceof MarketNonMember) {
+            //쿠폰 10장 있을 때
+            if(cunsumor.getCoupon() >= 10) {
+            	cunsumor.setCoupon(cunsumor.getCoupon() - 10);
+               System.out.println("쿠폰 10장을 사용하셨습니다. 남은 잔액 : " + cunsumor.getMoney() + " 남은 쿠폰 수 : " + cunsumor.getCoupon());
+            }else {
+               //비회원 + 쿠폰없음
+               int discount = (int)(product.getPrice() * 0.95);
+               cunsumor.setMoney(cunsumor.getMoney() - discount);
+               System.out.println("지불할 가격은 " + discount + "원 이며, 현재 남은 잔액은 " + cunsumor.getMoney() + "원 입니다.");
+               cunsumor.setCoupon(cunsumor.getCoupon() + 1);
+               System.out.println("쿠폰이 발급되었습니다! 남은 쿠폰 수 : " + cunsumor.getCoupon());
+               product.setProductStock(product.getProductStock() - 1);
+               System.out.println("남은 재고 : " + product.getProductStock());
+            }
+         }
+      } else if(cunsumor.getMoney() >= product.getPrice() && product.getProductStock() <= 0) {
+         System.out.println("상품이 존재하지 않거나 잔액이 부족합니다.");
+      } else {
+         System.out.println("안살거면 안녕히가세요");
+      }
+   }
+   
+
+   Product[] products = new Product[5]; 
+   //등록한 상품
+   int productCount = 0; 
+   
+   public void getRegisterProduct(Product product) {
+      //등록된 상품 확인하고
+      //이름의 중복 체크하기 
+      for(int i = 0; i < productCount; i++) {
+         if(products[i].getName().equals(product.getName())) {
+            System.out.println("이미 등록된 상품이 존재합니다." + product.getName());
+            return;
+         }
+      }
+      
+      //최대 5개까지 등록
+      if(productCount >= products.length) {
+         System.out.println("상품 등록 개수를 초과하였습니다 최대 5개 : " + product.getName());
+         return;
+      } 
+      
+      //5개 제한
+      if(product.getProductStock() > 5) {
+         product.setProductStock(5);
+         System.out.println("재고는 최대 5개까지만 가능합니다.");
+      }
+      
+      //등록
+      products[productCount++] = product;
+      System.out.println("상품이 등록되었습니다 : " + product.getName() + " / 가격 : " + product.getPrice() + "원 / 재고 : " + product.getProductStock() + "개");
+      
+   }
+   
+   //포인트 적립
+   public void getPoint(Product product, Cunsumor cunsumor) {
+      //회원인 경우
+      if(cunsumor instanceof MarketMember) {
+         //적립
+         int plus = (int)(product.getPrice() * 0.1);
+         cunsumor.setPoint(plus);
+         System.out.println("적립 포인트 : " + cunsumor.getPoint() + "p");
+         //비회원인 경우
+      } else if(cunsumor instanceof MarketNonMember) {
+         //적립
+         int plus = (int)(product.getPrice() * 0.05);
+         cunsumor.setPoint(plus);
+         System.out.println("적립 포인트 : " + cunsumor.getPoint() + "p");
+      }
+   }
+   
+}

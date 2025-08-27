@@ -57,6 +57,12 @@ public class Cunsumor {
 		this.coupon = coupon;
 	}
 	
+	int getDiscount() {
+		return discount;
+	}
+	void setDiscount(int discount) {
+		this.discount = discount;
+	}
 	
 
 }
