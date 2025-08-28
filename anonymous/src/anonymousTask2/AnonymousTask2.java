@@ -4,6 +4,7 @@ public class AnonymousTask2 {
 	public static void main(String[] args) {
 //		메서드 선언
 		MyInter myInter = new MyInter() {
+			String str = "";
 			
 			@Override
 //			알고리즘
@@ -20,11 +21,21 @@ public class AnonymousTask2 {
 			
 			@Override
 			public String changeUpperOrLower(String content) {
-				// TODO Auto-generated method stub
-				return null;
+				
+				char[] chars2 = content.toCharArray();
+				for(char c : chars2) {
+					if(c >= 65 && c <= 90) {
+						str += String.valueOf((char)(c + 32));
+					}else if(c >= 97 && c <= 122) {
+						str += String.valueOf((char)(c - 32));
+					}
+				}
+				return str;
 			}
 		};
 		
-		myInter.getString("ABCD");
+		myInter.getString("ABCD\n");
+		System.out.println(myInter.changeUpperOrLower("abCd"));
+		
 	}
 }
