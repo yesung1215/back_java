@@ -11,7 +11,7 @@ public class CastingTask1 {
 		System.out.printf("%.2f + %.2f = %d로 강제로 형변환", num1, num2, result);
 //		암호화는 프론트가 아닌 백엔드에서 하는것!
 		
-//		자동형반환 
+//`		자동형반환 
 //		문자형 + 정수 = 정수
 		System.out.println('A' * 100);
 		System.out.println((char)('A' * 100));
