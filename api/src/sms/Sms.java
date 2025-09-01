@@ -19,7 +19,7 @@ public class Sms {
 	      params.put("to", "01077131372");
 	      params.put("from", "01062618622");
 	      params.put("type", "SMS");
-	      params.put("text", "오늘 학원 끝나고 데이트 ㄱㄱ?");
+	      params.put("text", "안녕?");
 	      params.put("app_version", "text app 1.2"); // application name and version
 
 	      try {
