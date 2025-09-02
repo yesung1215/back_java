@@ -1,4 +1,4 @@
-package collection;
+package collectionTest;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,10 +63,20 @@ public class ArrayListTest2 {
 //		삭제
 //		80을 삭제
 //		1. 인덱스 삭제
-		datas.remove(6);
-		System.out.println(datas);
+//		datas.remove(6);
+//		System.out.println(datas);
+//		if(datas.contains(80)) {
+//			datas.remove(datas.indexOf(80));
+//		}
+//		System.out.println(datas);
 		
 //		2. 값으로 삭제
+		if(datas.contains(80)) {
+//			정수 -> 정수
+//			Wrapper Class
+			datas.remove(Integer.valueOf(80));
+		}
+		System.err.println(datas);
 		
 		
 	}
