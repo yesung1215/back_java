@@ -53,7 +53,10 @@ public class StreamTask1 {
 //      7. 한글을 정수로 변경 "공칠이삼" -> 0723
       String hangle = "공일이삼사오육칠팔구";
       String input = "일공이사";
-      input.chars().map(hangle::indexOf).forEach(System.out::println);
+      String input3 = "칠칠팔사";
+//      input.chars().map(hangle::indexOf).forEach(System.out::print);
+      input3.chars().map(hangle::indexOf).forEach(System.out::print);
+      
       
 //      8. 정수를 한글로 변경 "0723" -> "공칠이삼"
       String input2 = "0723";
