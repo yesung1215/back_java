@@ -30,10 +30,6 @@ public class StreamTask2 {
 //      .mapToInt(Boolean::booleanValue): Boolean -> boolean
 //      .mapToLong(Long::longValue): Long -> long
 //      .mapToDouble(Double::doubleValue): Double -> double
-      
-      
-      
-      
 
       
    }
