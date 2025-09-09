@@ -1,6 +1,5 @@
 package optionalTest;
 
-import java.nio.file.spi.FileSystemProvider;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -52,6 +51,7 @@ public class OptionalTest {
 		if(foudeUser.isPresent()) {
 			user1 = foudeUser.get();
 		}
+		System.out.println(user1);
 		
 //		.ifPresent()
 //		값이 있을 때에만 해당 로직을 수행
@@ -67,6 +67,5 @@ public class OptionalTest {
 			}, () -> {
 				System.out.println("존재하지 않는 유저입니다.");
 			});
-		
 	}
 }
