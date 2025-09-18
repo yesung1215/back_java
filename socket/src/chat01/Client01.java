@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 
 public class Client01 {
 	public static void main(String[] args) {
-//		포트번호 1100
+//		포트번호 1200
 //		192.168.209.1
 		Socket socket = null;
 		PrintWriter writer = null;
